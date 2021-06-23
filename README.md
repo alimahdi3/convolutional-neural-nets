@@ -27,10 +27,28 @@ Figure 3: Loss function that was used to evaluate baseline methdos as well as U-
 
 ### Baseline Methods
 
-Since applying neural networks to the phase retrieval problem in this particular way is novel, three baseline methods were analyzed. These three are linear regression, a three layer fully connected neural network, and a three layer 3D convolutional neural network. 
+Since applying neural networks to the phase retrieval problem in this particular way is novel, three baseline methods were analyzed. These three are linear regression, a three layer fully connected neural network, and a three layer 3D convolutional neural network. The training, validation, and test losses for all of these models are shown after discussing the U-net model.
 
+## U-net Model
+
+Following the three baseline methods, the popular U-net model was employed. The architecture of the U-net is shown below. 
+
+![Unet loss](./images/U-net.png)
+
+Figure 4: U-net model architecture.
+
+The U-net architecture uses a series of downsampling blocks using convolutions and upsampling blocks using transpose convolutions. The training and validation loss curves are shown below. The training loss is much lower than than the training loss found for the linear three layer net. Furthermore, there seems to be an overfitting issue since the validation loss is not dropping in the same way as the training loss. As this is still a project in progress, adding layers such as dropout and bathnorm can possibly fix this overfitting issue and are something that is actively being looked into. An important thing to note is that if this issue is resolved, the U-net and convolutional three layer network can be used to accuratley predict the phases.
 
 ![Unet loss](./images/Unet_loss_methods_section_v2.png)
-testing change
 
-testing another change
+Figure 5: Training and validation loss curves for U-net model.
+
+The losses for all four models are summarized in the table below. 
+
+![Unet loss](./images/loss_table.png)
+
+Figure 6: Train, validation, and test losses for the four models.
+
+Although the linear regression performed the best, the models with convolutional layers have the potential to perform much better than the linear regression after figuring out how to stop overfitting. 
+
+In order to get a better understanding of what the loss function was quantifying, a qualitative method of understanding the output was evaluated. 
