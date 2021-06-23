@@ -7,11 +7,11 @@ When recording diffraction data for crystallography, one only obtains the amplit
 
 The dataset was made by using Crystallographic Information Files (.cifs) and calculating all of the complex structure factors associated with it for a 10 keV X-ray source.  The conversion from the crystallographic file to X-ray diffrac-tion structure factors was done using a python library named Dan’s Diffraction. We did this for 16 crystals where we shifted the crystals by a random amount given by a normal distribution with a mean of zero and a standard deviation of one twentieth the lattice constant on the a-axis to act as a distortion to the structure factors. 
 
-![Unet loss](./images/reciprocal_space_structure_factor_example.png)
+![structure factors in 3D HKL space](./images/reciprocal_space_structure_factor_example.png)
 
 Figure 1: Structure factors for a Ni crystal plotted in 3D based on HKL space.
 
-![structure factors plotted](./images/Shifted_Nickel_Structure_Factors.JPG)
+![structure factors plotted in 2D](./images/Shifted_Nickel_Structure_Factors.JPG)
 
 Figure 2: Structure factors for a Ni Crystal tiled in 2D before perturbing the crystal (a) and after perturbing the crystal (b).
 
@@ -21,7 +21,7 @@ Figure 2: Structure factors for a Ni Crystal tiled in 2D before perturbing the c
 
 The primary numerical metric is the loss over a given dataset because it reveals how close the phases are for a given output. The reconstruction of the charge density in the crystal was used as a qualitative metric.
 
-![Unet loss](./images/loss_function.png)
+![loss function used for evaluating the models](./images/loss_function.png)
 
 Figure 3: Loss function that was used to evaluate baseline methdos as well as U-net model.
 
@@ -33,7 +33,7 @@ Since applying neural networks to the phase retrieval problem in this particular
 
 Following the three baseline methods, the popular U-net model was employed. The architecture of the U-net is shown below. 
 
-![Unet loss](./images/U-net.png)
+![U-net model architecture](./images/U-net.png)
 
 Figure 4: U-net model architecture.
 
@@ -51,4 +51,14 @@ Figure 6: Train, validation, and test losses for the four models.
 
 Although the linear regression performed the best, the models with convolutional layers have the potential to perform much better than the linear regression after figuring out how to stop overfitting. 
 
-In order to get a better understanding of what the loss function was quantifying, a qualitative method of understanding the output was evaluated. 
+In order to get a better understanding of what the loss function was quantifying, a qualitative method of understanding the output was evaluated. In this case, figure 7 shows the prediction of one sample made by the U-net model. Once the phases are predicted by the model, a reconstruction of the charge density for a crystal can be made to look for qualitative differences between the correct label, and the prediction. Figure 7 reveals that the phases were predicted relatively well, although there were some mistakes as seen in the top right corner of the cube.  
+
+![Training, validation, and test loss for all four models](./images/density_reconstructions.png)
+
+Figure 7: Reconstruction of charge density using a) correct phases (label) and b) phases predicted by the U-net model.
+
+## Conclusion and Future Outlook
+
+Four models were able to predict the phases of the structure factors when given amplitudes of the corresponding structure factors. The models are linear regression, two different three layer nets, and U-net. The three neural networks performed better than linear regression and performed fairly similarly. The first issue that will be addressed is correcting the overfiting problem in the two networks that leverage convolutional layers. Furthermore, more complex crystal systems can be used as input data. The networks that leverage convolutional layers may perform better on the complex crystal systems. 
+
+The goal for this would be to eventually implement this with an X-ray crystallography setup such that at test time one may be able to get an accurate representation of the charge density relatively quickly when measuring X-ray Bragg peaks. This may help X-ray studies where they start with a structure and try to predict the measured charge distribution from X-ray diffraction data taken using a model trained on crystals known to be similar to the sample being measured.
