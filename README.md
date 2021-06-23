@@ -55,7 +55,7 @@ In order to get a better understanding of what the loss function was quantifying
 
 ![Training, validation, and test loss for all four models](./images/density_reconstructions.png)
 
-Figure 7: Reconstruction of charge density using a) correct phases (label) and b) phases predicted by the U-net model.
+Figure 7: Reconstruction of charge density using (a) correct phases (label) and (b) phases predicted by the U-net model.
 
 ## Conclusion and Future Outlook
 
