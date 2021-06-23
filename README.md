@@ -45,7 +45,7 @@ Figure 5: Training and validation loss curves for U-net model.
 
 The losses for all four models are summarized in the table below. 
 
-![Unet loss](./images/loss_table.png)
+![Training, validation, and test loss for all four models](./images/loss_table2.png)
 
 Figure 6: Train, validation, and test losses for the four models.
 
@@ -53,7 +53,7 @@ Although the linear regression performed the best, the models with convolutional
 
 In order to get a better understanding of what the loss function was quantifying, a qualitative method of understanding the output was evaluated. In this case, figure 7 shows the prediction of one sample made by the U-net model. Once the phases are predicted by the model, a reconstruction of the charge density for a crystal can be made to look for qualitative differences between the correct label, and the prediction. Figure 7 reveals that the phases were predicted relatively well, although there were some mistakes as seen in the top right corner of the cube.  
 
-![Training, validation, and test loss for all four models](./images/density_reconstructions.png)
+![Charge density reconstructions of crystals](./images/density_reconstructions.png)
 
 Figure 7: Reconstruction of charge density using (a) correct phases (label) and (b) phases predicted by the U-net model.
 
